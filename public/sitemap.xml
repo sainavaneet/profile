@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://www.example.com/blog/</loc>
+    <loc>https://sainavaneet.github.io/profile/blog/</loc>
     <lastmod>2025-03-12T09:40:27+09:00</lastmod>
   </url><url>
-    <loc>http://www.example.com/</loc>
+    <loc>https://sainavaneet.github.io/profile/</loc>
     <lastmod>2025-03-12T09:40:27+09:00</lastmod>
   </url><url>
-    <loc>http://www.example.com/about/</loc>
+    <loc>https://sainavaneet.github.io/profile/about/</loc>
     <lastmod>2025-03-12T09:39:42+09:00</lastmod>
   </url><url>
-    <loc>http://www.example.com/authors/</loc>
+    <loc>https://sainavaneet.github.io/profile/authors/</loc>
   </url><url>
-    <loc>http://www.example.com/categories/</loc>
+    <loc>https://sainavaneet.github.io/profile/categories/</loc>
   </url><url>
-    <loc>http://www.example.com/projects/</loc>
+    <loc>https://sainavaneet.github.io/profile/projects/</loc>
   </url><url>
-    <loc>http://www.example.com/series/</loc>
+    <loc>https://sainavaneet.github.io/profile/series/</loc>
   </url><url>
-    <loc>http://www.example.com/tags/</loc>
+    <loc>https://sainavaneet.github.io/profile/tags/</loc>
   </url><url>
-    <loc>http://www.example.com/projects/actfranka/</loc>
+    <loc>https://sainavaneet.github.io/profile/projects/actfranka/</loc>
   </url>
 </urlset>

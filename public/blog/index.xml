@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on Profile</title>
-    <link>http://www.example.com/blog/</link>
+    <link>https://sainavaneet.github.io/profile/blog/</link>
     <description>Recent content in Blogs on Profile</description>
     <generator>Hugo</generator>
     <language>en</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="http://www.example.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://sainavaneet.github.io/profile/blog/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
