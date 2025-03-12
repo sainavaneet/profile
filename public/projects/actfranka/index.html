@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <title>
+  Vision Guided Imitation Learning using Action Chunk Transformer · Profile
+</title>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+
+
+
+
+<meta name="author" content="Sai Navaneet">
+<meta name="description" content="
+  Introduction
+  
+    
+    Link to heading
+  
+
+The Action Chunking with Transformers (ACT) technique in single-arm robotic manipulation for vision-guided pick-and-place tasks. ACT employs a Conditional Variational Autoencoder (CVAE) to predict sequences of actions, termed &ldquo;action chunks,&rdquo; which are groups of actions predicted together to achieve more complex tasks efficiently. Unlike traditional methods that rely solely on joint position data and predict individual actions, our approach integrates visual data to enrich the learning context and enhance execution precision. We acquired the expert data by providing manual demonstrations of the task, allowing the model to learn from real-time, complex action sequences. By predicting these action chunks instead of single actions, the ACT model adapts from dual-arm to single-arm configurations, enhancing control strategies and demonstrating significant improvements in the robot&rsquo;s speed, precision, and reliability. This substantiates the paper&rsquo;s title, &ldquo;Vision-Guided Imitation Learning Using Action Chunk Transformers,&rdquo; highlighting the critical role of vision in advancing robotic control systems.">
+<meta name="keywords" content="Researcher, Engineer ,personal">
+
+
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Vision Guided Imitation Learning using Action Chunk Transformer">
+  <meta name="twitter:description" content="Introduction Link to heading The Action Chunking with Transformers (ACT) technique in single-arm robotic manipulation for vision-guided pick-and-place tasks. ACT employs a Conditional Variational Autoencoder (CVAE) to predict sequences of actions, termed “action chunks,” which are groups of actions predicted together to achieve more complex tasks efficiently. Unlike traditional methods that rely solely on joint position data and predict individual actions, our approach integrates visual data to enrich the learning context and enhance execution precision. We acquired the expert data by providing manual demonstrations of the task, allowing the model to learn from real-time, complex action sequences. By predicting these action chunks instead of single actions, the ACT model adapts from dual-arm to single-arm configurations, enhancing control strategies and demonstrating significant improvements in the robot’s speed, precision, and reliability. This substantiates the paper’s title, “Vision-Guided Imitation Learning Using Action Chunk Transformers,” highlighting the critical role of vision in advancing robotic control systems.">
+
+<meta property="og:url" content="http://localhost:1313/projects/actfranka/">
+  <meta property="og:site_name" content="Profile">
+  <meta property="og:title" content="Vision Guided Imitation Learning using Action Chunk Transformer">
+  <meta property="og:description" content="Introduction Link to heading The Action Chunking with Transformers (ACT) technique in single-arm robotic manipulation for vision-guided pick-and-place tasks. ACT employs a Conditional Variational Autoencoder (CVAE) to predict sequences of actions, termed “action chunks,” which are groups of actions predicted together to achieve more complex tasks efficiently. Unlike traditional methods that rely solely on joint position data and predict individual actions, our approach integrates visual data to enrich the learning context and enhance execution precision. We acquired the expert data by providing manual demonstrations of the task, allowing the model to learn from real-time, complex action sequences. By predicting these action chunks instead of single actions, the ACT model adapts from dual-arm to single-arm configurations, enhancing control strategies and demonstrating significant improvements in the robot’s speed, precision, and reliability. This substantiates the paper’s title, “Vision-Guided Imitation Learning Using Action Chunk Transformers,” highlighting the critical role of vision in advancing robotic control systems.">
+  <meta property="og:locale" content="en">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="projects">
+
+
+
+
+<link rel="canonical" href="http://localhost:1313/projects/actfranka/">
+
+
+<link rel="preload" href="/fonts/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
+
+
+  
+  
+  <link rel="stylesheet" href="/css/coder.css" media="screen">
+
+
+
+
+
+
+  
+    
+    
+    <link rel="stylesheet" href="/css/coder-dark.css" media="screen">
+  
+
+
+
+ 
+
+
+
+
+<link rel="icon" type="image/svg+xml" href="/img/favicon.svg" sizes="any">
+<link rel="icon" type="image/png" href="/img/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/img/favicon-16x16.png" sizes="16x16">
+
+<link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/images/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+</head>
+
+
+
+
+
+
+<body class="preload-transitions colorscheme-auto">
+  
+<div class="float-container">
+    <a id="dark-mode-toggle" class="colorscheme-toggle">
+        <i class="fa-solid fa-adjust fa-fw" aria-hidden="true"></i>
+    </a>
+</div>
+
+
+  <main class="wrapper">
+    <nav class="navigation">
+  <section class="container">
+    
+    <a class="navigation-title" href="http://localhost:1313/">
+      Profile
+    </a>
+    
+    
+      <input type="checkbox" id="menu-toggle" />
+      <label class="menu-button float-right" for="menu-toggle">
+        <i class="fa-solid fa-bars fa-fw" aria-hidden="true"></i>
+      </label>
+      <ul class="navigation-list">
+        
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/projects/">Projects</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/posts/">Blog</a>
+            </li>
+          
+            <li class="navigation-item">
+              <a class="navigation-link " href="/about/">About</a>
+            </li>
+          
+        
+        
+      </ul>
+    
+  </section>
+</nav>
+
+
+    <div class="content">
+      
+  <section class="container page">
+  <article>
+    <header>
+      <h1 class="title">
+        <a class="title-link" href="http://localhost:1313/projects/actfranka/">
+          Vision Guided Imitation Learning using Action Chunk Transformer
+        </a>
+      </h1>
+    </header>
+
+    <h1 id="introduction">
+  Introduction
+  <a class="heading-link" href="#introduction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>The Action Chunking with Transformers (ACT) technique in single-arm robotic manipulation for vision-guided pick-and-place tasks. ACT employs a Conditional Variational Autoencoder (CVAE) to predict sequences of actions, termed &ldquo;action chunks,&rdquo; which are groups of actions predicted together to achieve more complex tasks efficiently. Unlike traditional methods that rely solely on joint position data and predict individual actions, our approach integrates visual data to enrich the learning context and enhance execution precision. We acquired the expert data by providing manual demonstrations of the task, allowing the model to learn from real-time, complex action sequences. By predicting these action chunks instead of single actions, the ACT model adapts from dual-arm to single-arm configurations, enhancing control strategies and demonstrating significant improvements in the robot&rsquo;s speed, precision, and reliability. This substantiates the paper&rsquo;s title, &ldquo;Vision-Guided Imitation Learning Using Action Chunk Transformers,&rdquo; highlighting the critical role of vision in advancing robotic control systems.</p>
+<h1 id="transformer">
+  Transformer
+  <a class="heading-link" href="#transformer">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p>This is from the main paper <code>&quot;Attention is all you need &quot;</code> .It’s designed to encode a sequence into a set of context-aware vector representations, relying heavily on self-attention and position-wise operations, without using recurrence (like RNNs) or convolution.</p>
+<p><img src="/images/clipboard-3868909561.png" alt="Description of image"></p>
+<p>The transformer architecture is divided into two parts.</p>
+<ol>
+<li>
+<p>Encoder</p>
+</li>
+<li>
+<p>Decoder</p>
+</li>
+</ol>
+<h2 id="encoder">
+  Encoder
+  <a class="heading-link" href="#encoder">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><img src="/images/clipboard-2502854223.png" alt="D"></p>
+<p>First of all the encoder transforms the input tokens into continuous embeddings and adds positional encodings, resulting in a sequence of vectors that now carry both semantic and positional information.</p>
+<h2 id="multi-head-attention">
+  Multi-head Attention
+  <a class="heading-link" href="#multi-head-attention">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><img src="/images/clipboard-962511043.png" alt="D"></p>
+<ul>
+<li>
+<p>Take an input embedding with a dimension of 256.</p>
+</li>
+<li>
+<p>Split the embedding into 8 segments, each with a dimension of 32.</p>
+</li>
+<li>
+<p>Pass each segment through its own linear layer.</p>
+</li>
+<li>
+<p>Feed the outputs of these linear layers into the Scaled Dot Product Attention mechanism.</p>
+</li>
+<li>
+<p><strong>Scaled Dot Product Attention</strong></p>
+</li>
+</ul>
+<p><img src="/images/math.png" alt="D"></p>
+<p><img src="/images/clipboard-2936912793.png" alt="D"></p>
+<ul>
+<li>We concatenate the various segments we initially divided, restoring them to the original input embedding size. This concatenated output is then passed through a Linear layer, which produces the final output of the Attention mechanism.</li>
+</ul>
+<h2 id="decoder">
+  Decoder
+  <a class="heading-link" href="#decoder">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><img src="/images/clipboard-1278570773.png" alt=""></p>
+<p>The decoder receives the encoder&rsquo;s output and feeds it into the multi-headed attention mechanism.</p>
+<p>The only change in the decoder is that within its multi-headed attention, the values and keys are sourced from the encoder, while the queries are derived from the decoder&rsquo;s preceding output.</p>
+<h1 id="main-overview-of-the-act">
+  Main Overview of the ACT
+  <a class="heading-link" href="#main-overview-of-the-act">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p><img src="/images/clipboard-1202681815.png" alt=""></p>
+<p>The main architecture of the Action Chunk Transformer incorporates <code>two distinct encoders</code>. On the <code>left side</code>, one encoder is dedicated to processing action sequences along with position embeddings, which are then integrated into a style variable.</p>
+<h2 id="step-1">
+  STEP 1
+  <a class="heading-link" href="#step-1">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><img src="/images/clipboard-993422171.png" alt=""><strong>Encoding Latent Variations:</strong> The encoder on the left side compresses the action sequence and joint observations into a latent variable <em>z</em>. This variable captures the &ldquo;<code>style</code>&rdquo; of the action, focusing on unique motion patterns while ignoring specific details.</p>
+<p><strong>Facilitating Stochasticity:</strong></p>
+<p><code>z</code> introduces necessary stochasticity, allowing the model to account for multiple plausible action sequences from the same input, which is vital during training.</p>
+<p><strong>Test-Time Simplicity:</strong></p>
+<p>At test time, <em><code>z</code></em> is set to the mean of its prior distribution, usually zero, to simplify the inference process by:</p>
+<ul>
+<li>
+<p>Eliminating the need for random sampling.</p>
+</li>
+<li>
+<p>Streamlining the generation of deterministic action sequences.</p>
+</li>
+</ul>
+<p>In essence, z aids in learning a probabilistic representation of action variations during training but is simplified to a deterministic value at test time.</p>
+<p>Finally, the encoder on the right further supports the training process by handling additional aspects of the input data, ensuring comprehensive learning and adaptation by the model.</p>
+<p>This structure allows the transformer to manage and learn from complex action sequences in a highly effective manner.</p>
+<h2 id="step-2">
+  STEP 2
+  <a class="heading-link" href="#step-2">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><img src="/images/clipboard-2424426765.png" alt="">{width=&ldquo;806&rdquo;}</p>
+<h3 id="system-overview">
+  System Overview
+  <a class="heading-link" href="#system-overview">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>The system is designed to process visual input from cameras to predict the movement or configuration of robot joints. It integrates convolutional neural networks (CNNs) and transformers to achieve this, using image data to determine how the robot should adjust its joints.</p>
+<h3 id="image-input-and-cnn-processing">
+  Image Input and CNN Processing
+  <a class="heading-link" href="#image-input-and-cnn-processing">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p><strong>Input Images</strong>: The input consists of RGB images with a resolution of 640x480 pixels. If there are multiple cameras, each provides an image of this size.</p>
+</li>
+<li>
+<p><strong>CNN Backbone (ResNet18)</strong>: The images are first processed by a convolutional neural network (CNN), specifically using ResNet18 as the backbone. This CNN is tasked with extracting relevant features from the raw images. The CNN reduces the spatial dimensions of the image while increasing the depth of features:</p>
+<ul>
+<li><strong>Output Dimension</strong>: After passing through the CNN, the dimensions of each image are reduced to a feature map of 300x512. This size represents a flattened form of the original feature maps, which may initially be spatially structured (e.g., 15x20 pixels with 512 feature channels).</li>
+</ul>
+</li>
+</ul>
+<h3 id="feature-tokenization-and-transformer-encoding">
+  Feature Tokenization and Transformer Encoding
+  <a class="heading-link" href="#feature-tokenization-and-transformer-encoding">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p><strong>Tokenization</strong>: The output from the CNN is considered as a series of tokens. Each pixel in the 300x512 map is treated as an individual token, carrying rich feature information.</p>
+</li>
+<li>
+<p><strong>Inputs for Transformer</strong>:</p>
+<ul>
+<li>
+<p><strong>Observations</strong>: The tokens derived from the CNN output.</p>
+</li>
+<li>
+<p><strong>Joint States</strong>: Current or previous states of the robot&rsquo;s joints are also inputted into the transformer as a 1x512 vector. This informs the model of the robot’s current configuration.</p>
+</li>
+<li>
+<p><strong>Latent Style Variable <code>z</code></strong>: A style variable (also of size 1x512) is included to possibly capture and integrate additional contextual or style-specific information which may influence how the output should be adapted.</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="decoding-and-output-prediction">
+  Decoding and Output Prediction
+  <a class="heading-link" href="#decoding-and-output-prediction">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<ul>
+<li>
+<p><strong>Decoder</strong>: The decoder part of the transformer then takes the encoded data and, through a series of transformations, predicts the sequence of joint angles. These predictions are formatted as sequences (kx8), where <code>k</code> represents different prediction points or time steps, and 8 could represent the number of joints or the dimensionality of each joint&rsquo;s output.</p>
+</li>
+<li>
+<p><strong>Output</strong>: The final output is a sequence predicting how the joints should move or be positioned based on the visual input and the given conditions (latent variables and joint states).</p>
+</li>
+</ul>
+<h2 id="temporial-ensembling">
+  Temporial Ensembling
+  <a class="heading-link" href="#temporial-ensembling">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><img src="/images/clipboard-3830263335.png" alt=""></p>
+<h3 id="action-chunking">
+  Action Chunking
+  <a class="heading-link" href="#action-chunking">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>Action chunking involves predicting a sequence of actions for multiple future time steps, starting at <code>t=0</code>. Initially, the model predicts actions for four future time steps, which the robot then executes sequentially. Once these actions are completed, at <code>t=4</code>, the model again predicts the next four actions. This pattern continues, allowing the robot to perform tasks by planning several steps ahead.</p>
+<h3 id="action-chunking-with-temporal-ensembling">
+  Action Chunking with Temporal Ensembling
+  <a class="heading-link" href="#action-chunking-with-temporal-ensembling">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h3>
+<p>In the enhanced method combining Action Chunking and Temporal Ensembling, the model initially predicts four actions at <code>t=0</code> and executes the first action immediately. At each subsequent time step, such as <code>t=1</code>, the model predicts another set of four actions. To determine the next action to execute, the model averages the predictions from the current time step with the predictions from the previous time step. Specifically, it averages the current state&rsquo;s prediction with the first state&rsquo;s prediction from the new batch. This averaging process is used at each time step to smooth the trajectory of actions, ensuring that the robot&rsquo;s motion is consistent.</p>
+<h1 id="algorithm">
+  Algorithm
+  <a class="heading-link" href="#algorithm">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<p><img src="/images/clipboard-4249152901.png" alt=""></p>
+<h1 id="code">
+  CODE
+  <a class="heading-link" href="#code">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+<h2 id="datset-prepare">
+  Datset Prepare
+  <a class="heading-link" href="#datset-prepare">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>The datset structure
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a5d6ff">`</span>Contents of the HDF5 file:
+</span></span><span style="display:flex;"><span>action: &lt;HDF5 dataset <span style="color:#a5d6ff">&#34;action&#34;</span>: shape <span style="color:#ff7b72;font-weight:bold">(</span>149, 8<span style="color:#ff7b72;font-weight:bold">)</span>, type <span style="color:#a5d6ff">&#34;&lt;f8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  - Shape: <span style="color:#ff7b72;font-weight:bold">(</span>149, 8<span style="color:#ff7b72;font-weight:bold">)</span>, Type: float64
+</span></span><span style="display:flex;"><span>observations: &lt;HDF5 group <span style="color:#a5d6ff">&#34;/observations&#34;</span> <span style="color:#ff7b72;font-weight:bold">(</span><span style="color:#a5d6ff">2</span> members<span style="color:#ff7b72;font-weight:bold">)</span>&gt;
+</span></span><span style="display:flex;"><span>    images: &lt;HDF5 group <span style="color:#a5d6ff">&#34;/observations/images&#34;</span> <span style="color:#ff7b72;font-weight:bold">(</span><span style="color:#a5d6ff">1</span> members<span style="color:#ff7b72;font-weight:bold">)</span>&gt;
+</span></span><span style="display:flex;"><span>        top: &lt;HDF5 dataset <span style="color:#a5d6ff">&#34;top&#34;</span>: shape <span style="color:#ff7b72;font-weight:bold">(</span>149, 480, 640, 3<span style="color:#ff7b72;font-weight:bold">)</span>, type <span style="color:#a5d6ff">&#34;|u1&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>          - Shape: <span style="color:#ff7b72;font-weight:bold">(</span>149, 480, 640, 3<span style="color:#ff7b72;font-weight:bold">)</span>, Type: uint8
+</span></span><span style="display:flex;"><span>    qpos: &lt;HDF5 dataset <span style="color:#a5d6ff">&#34;qpos&#34;</span>: shape <span style="color:#ff7b72;font-weight:bold">(</span>149, 8<span style="color:#ff7b72;font-weight:bold">)</span>, type <span style="color:#a5d6ff">&#34;&lt;f8&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>      - Shape: <span style="color:#ff7b72;font-weight:bold">(</span>149, 8<span style="color:#ff7b72;font-weight:bold">)</span>, Type: float64<span style="color:#a5d6ff">`</span>
+</span></span></code></pre></div><p>This code is in <code>live_record.py</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">cv2</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">os</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">h5py</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">numpy</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">np</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">controller.robot_state</span> <span style="color:#ff7b72">import</span> <span style="color:#ff7b72;font-weight:bold">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">class</span> <span style="color:#f0883e;font-weight:bold">CameraController</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> __init__(self, camera_index<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">0</span>):
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>capture <span style="color:#ff7b72;font-weight:bold">=</span> cv2<span style="color:#ff7b72;font-weight:bold">.</span>VideoCapture(camera_index)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>capture<span style="color:#ff7b72;font-weight:bold">.</span>set(cv2<span style="color:#ff7b72;font-weight:bold">.</span>CAP_PROP_FRAME_WIDTH, <span style="color:#a5d6ff">640</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>capture<span style="color:#ff7b72;font-weight:bold">.</span>set(cv2<span style="color:#ff7b72;font-weight:bold">.</span>CAP_PROP_FRAME_HEIGHT, <span style="color:#a5d6ff">480</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>data <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>robot_state_data <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>recording <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">False</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>franka <span style="color:#ff7b72;font-weight:bold">=</span> RobotController()
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># self.franka.initial_pose()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">capture_frames</span>(self):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#a5d6ff">&#34;Press &#39;s&#39; to start/stop recording. Press &#39;q&#39; to quit.&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">while</span> <span style="color:#79c0ff">True</span>:
+</span></span><span style="display:flex;"><span>            ret, frame <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>capture<span style="color:#ff7b72;font-weight:bold">.</span>read()
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">if</span> ret:
+</span></span><span style="display:flex;"><span>                cv2<span style="color:#ff7b72;font-weight:bold">.</span>imshow(<span style="color:#a5d6ff">&#39;Camera Feed&#39;</span>, frame)
+</span></span><span style="display:flex;"><span>                key <span style="color:#ff7b72;font-weight:bold">=</span> cv2<span style="color:#ff7b72;font-weight:bold">.</span>waitKey(<span style="color:#a5d6ff">1</span>) <span style="color:#ff7b72;font-weight:bold">&amp;</span> <span style="color:#a5d6ff">0xFF</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff7b72">if</span> key <span style="color:#ff7b72;font-weight:bold">==</span> ord(<span style="color:#a5d6ff">&#39;s&#39;</span>):
+</span></span><span style="display:flex;"><span>                    self<span style="color:#ff7b72;font-weight:bold">.</span>recording <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#ff7b72;font-weight:bold">not</span> self<span style="color:#ff7b72;font-weight:bold">.</span>recording
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff7b72">if</span> self<span style="color:#ff7b72;font-weight:bold">.</span>recording:
+</span></span><span style="display:flex;"><span>                        print(<span style="color:#a5d6ff">&#34;Recording started.&#34;</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff7b72">else</span>:
+</span></span><span style="display:flex;"><span>                        print(<span style="color:#a5d6ff">&#34;Recording stopped. Saving data...&#34;</span>)
+</span></span><span style="display:flex;"><span>                        self<span style="color:#ff7b72;font-weight:bold">.</span>record_extra_frames(<span style="color:#a5d6ff">5</span>) 
+</span></span><span style="display:flex;"><span>                        self<span style="color:#ff7b72;font-weight:bold">.</span>save_data()
+</span></span><span style="display:flex;"><span>                        self<span style="color:#ff7b72;font-weight:bold">.</span>data <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>                        self<span style="color:#ff7b72;font-weight:bold">.</span>robot_state_data <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>                <span style="color:#ff7b72">elif</span> key <span style="color:#ff7b72;font-weight:bold">==</span> ord(<span style="color:#a5d6ff">&#39;q&#39;</span>):
+</span></span><span style="display:flex;"><span>                    <span style="color:#ff7b72">break</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#ff7b72">if</span> self<span style="color:#ff7b72;font-weight:bold">.</span>recording:
+</span></span><span style="display:flex;"><span>                    self<span style="color:#ff7b72;font-weight:bold">.</span>data<span style="color:#ff7b72;font-weight:bold">.</span>append(frame)
+</span></span><span style="display:flex;"><span>                    robot_state <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>get_robot_state(<span style="color:#a5d6ff">0</span>)  <span style="color:#8b949e;font-style:italic"># Initial state with &#39;0&#39;</span>
+</span></span><span style="display:flex;"><span>                    self<span style="color:#ff7b72;font-weight:bold">.</span>robot_state_data<span style="color:#ff7b72;font-weight:bold">.</span>append(robot_state)
+</span></span><span style="display:flex;"><span>        cv2<span style="color:#ff7b72;font-weight:bold">.</span>destroyAllWindows()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">get_robot_state</span>(self, end_marker<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">0</span>):
+</span></span><span style="display:flex;"><span>        angles <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>franka<span style="color:#ff7b72;font-weight:bold">.</span>angles()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">return</span> np<span style="color:#ff7b72;font-weight:bold">.</span>concatenate((angles, [end_marker]))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">record_extra_frames</span>(self, count):
+</span></span><span style="display:flex;"><span>        last_frame <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>data[<span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#a5d6ff">1</span>]
+</span></span><span style="display:flex;"><span>        last_state <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>get_robot_state(<span style="color:#a5d6ff">1</span>)  <span style="color:#8b949e;font-style:italic"># Final state with &#39;1&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">for</span> _ <span style="color:#ff7b72;font-weight:bold">in</span> range(count):
+</span></span><span style="display:flex;"><span>            self<span style="color:#ff7b72;font-weight:bold">.</span>data<span style="color:#ff7b72;font-weight:bold">.</span>append(last_frame)
+</span></span><span style="display:flex;"><span>            self<span style="color:#ff7b72;font-weight:bold">.</span>robot_state_data<span style="color:#ff7b72;font-weight:bold">.</span>append(last_state)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">save_data</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">if</span> <span style="color:#ff7b72;font-weight:bold">not</span> self<span style="color:#ff7b72;font-weight:bold">.</span>data:
+</span></span><span style="display:flex;"><span>            print(<span style="color:#a5d6ff">&#34;No data to save.&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">return</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        episode_idx <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>
+</span></span><span style="display:flex;"><span>        directory <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;real_dir2&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">if</span> <span style="color:#ff7b72;font-weight:bold">not</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>exists(directory):
+</span></span><span style="display:flex;"><span>            os<span style="color:#ff7b72;font-weight:bold">.</span>makedirs(directory)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">while</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>exists(os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>join(directory, <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;episode_</span><span style="color:#a5d6ff">{</span>episode_idx<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">.hdf5&#39;</span>)):
+</span></span><span style="display:flex;"><span>            episode_idx <span style="color:#ff7b72;font-weight:bold">+=</span> <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>        file_path <span style="color:#ff7b72;font-weight:bold">=</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>join(directory, <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;episode_</span><span style="color:#a5d6ff">{</span>episode_idx<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">.hdf5&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">with</span> h5py<span style="color:#ff7b72;font-weight:bold">.</span>File(file_path, <span style="color:#a5d6ff">&#39;w&#39;</span>) <span style="color:#ff7b72">as</span> root:
+</span></span><span style="display:flex;"><span>            root<span style="color:#ff7b72;font-weight:bold">.</span>attrs[<span style="color:#a5d6ff">&#39;sim&#39;</span>] <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">True</span>
+</span></span><span style="display:flex;"><span>            obs <span style="color:#ff7b72;font-weight:bold">=</span> root<span style="color:#ff7b72;font-weight:bold">.</span>create_group(<span style="color:#a5d6ff">&#39;observations&#39;</span>)
+</span></span><span style="display:flex;"><span>            images <span style="color:#ff7b72;font-weight:bold">=</span> obs<span style="color:#ff7b72;font-weight:bold">.</span>create_group(<span style="color:#a5d6ff">&#39;images&#39;</span>)
+</span></span><span style="display:flex;"><span>            camera_names <span style="color:#ff7b72;font-weight:bold">=</span> [<span style="color:#a5d6ff">&#39;top&#39;</span>]
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">for</span> cam_name, data <span style="color:#ff7b72;font-weight:bold">in</span> zip(camera_names, [self<span style="color:#ff7b72;font-weight:bold">.</span>data]):
+</span></span><span style="display:flex;"><span>                image_data <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array(data, dtype<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;uint8&#39;</span>)
+</span></span><span style="display:flex;"><span>                images<span style="color:#ff7b72;font-weight:bold">.</span>create_dataset(cam_name, data<span style="color:#ff7b72;font-weight:bold">=</span>image_data, dtype<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;uint8&#39;</span>, chunks<span style="color:#ff7b72;font-weight:bold">=</span>(<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">480</span>, <span style="color:#a5d6ff">640</span>, <span style="color:#a5d6ff">3</span>))
+</span></span><span style="display:flex;"><span>            robot_data <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array(self<span style="color:#ff7b72;font-weight:bold">.</span>robot_state_data, dtype<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;float64&#39;</span>)
+</span></span><span style="display:flex;"><span>            obs<span style="color:#ff7b72;font-weight:bold">.</span>create_dataset(<span style="color:#a5d6ff">&#39;qpos&#39;</span>, data<span style="color:#ff7b72;font-weight:bold">=</span>robot_data)
+</span></span><span style="display:flex;"><span>            root<span style="color:#ff7b72;font-weight:bold">.</span>create_dataset(<span style="color:#a5d6ff">&#39;action&#39;</span>, data<span style="color:#ff7b72;font-weight:bold">=</span>robot_data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">main</span>():
+</span></span><span style="display:flex;"><span>    camera_index <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>
+</span></span><span style="display:flex;"><span>    camera_controller <span style="color:#ff7b72;font-weight:bold">=</span> CameraController(camera_index)
+</span></span><span style="display:flex;"><span>    camera_controller<span style="color:#ff7b72;font-weight:bold">.</span>capture_frames()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">if</span> __name__ <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    main()
+</span></span></code></pre></div><h2 id="dataset-sampler">
+  Dataset Sampler
+  <a class="heading-link" href="#dataset-sampler">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">os</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">h5py</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torch</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">numpy</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">np</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">einops</span> <span style="color:#ff7b72">import</span> rearrange
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">torch.utils.data</span> <span style="color:#ff7b72">import</span> DataLoader
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># from policy import ACTPolicy , CNNMLPPolicy</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">policy</span> <span style="color:#ff7b72">import</span> ACTPolicy , CNNMLPPolicy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">IPython</span>
+</span></span><span style="display:flex;"><span>e <span style="color:#ff7b72;font-weight:bold">=</span> IPython<span style="color:#ff7b72;font-weight:bold">.</span>embed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">class</span> <span style="color:#f0883e;font-weight:bold">EpisodicDataset</span>(torch<span style="color:#ff7b72;font-weight:bold">.</span>utils<span style="color:#ff7b72;font-weight:bold">.</span>data<span style="color:#ff7b72;font-weight:bold">.</span>Dataset):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> __init__(self, episode_ids, dataset_dir, camera_names, norm_stats):
+</span></span><span style="display:flex;"><span>        super(EpisodicDataset)<span style="color:#ff7b72;font-weight:bold">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>episode_ids <span style="color:#ff7b72;font-weight:bold">=</span> episode_ids
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>dataset_dir <span style="color:#ff7b72;font-weight:bold">=</span> dataset_dir
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>camera_names <span style="color:#ff7b72;font-weight:bold">=</span> camera_names
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>norm_stats <span style="color:#ff7b72;font-weight:bold">=</span> norm_stats
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>is_sim <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">None</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic">#self.__getitem__(0) # initialize self.is_sim</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> __len__(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">return</span> len(self<span style="color:#ff7b72;font-weight:bold">.</span>episode_ids)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> __getitem__(self, index):
+</span></span><span style="display:flex;"><span>        sample_full_episode <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">False</span> <span style="color:#8b949e;font-style:italic"># hardcode</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        episode_id <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>episode_ids[index]
+</span></span><span style="display:flex;"><span>        dataset_path <span style="color:#ff7b72;font-weight:bold">=</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>join(self<span style="color:#ff7b72;font-weight:bold">.</span>dataset_dir, <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;episode_</span><span style="color:#a5d6ff">{</span>episode_id<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">.hdf5&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">with</span> h5py<span style="color:#ff7b72;font-weight:bold">.</span>File(dataset_path, <span style="color:#a5d6ff">&#39;r&#39;</span>) <span style="color:#ff7b72">as</span> root:
+</span></span><span style="display:flex;"><span>            is_sim <span style="color:#ff7b72;font-weight:bold">=</span> root<span style="color:#ff7b72;font-weight:bold">.</span>attrs[<span style="color:#a5d6ff">&#39;sim&#39;</span>]
+</span></span><span style="display:flex;"><span>            original_action_shape <span style="color:#ff7b72;font-weight:bold">=</span> root[<span style="color:#a5d6ff">&#39;/action&#39;</span>]<span style="color:#ff7b72;font-weight:bold">.</span>shape
+</span></span><span style="display:flex;"><span>            episode_len <span style="color:#ff7b72;font-weight:bold">=</span> original_action_shape[<span style="color:#a5d6ff">0</span>]
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">if</span> sample_full_episode:
+</span></span><span style="display:flex;"><span>                start_ts <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">0</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">else</span>:
+</span></span><span style="display:flex;"><span>                start_ts <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>random<span style="color:#ff7b72;font-weight:bold">.</span>choice(episode_len)
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># get observation at start_ts only</span>
+</span></span><span style="display:flex;"><span>            qpos <span style="color:#ff7b72;font-weight:bold">=</span> root[<span style="color:#a5d6ff">&#39;/observations/qpos&#39;</span>][start_ts]
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># qvel = root[&#39;/observations/qvel&#39;][start_ts]</span>
+</span></span><span style="display:flex;"><span>            image_dict <span style="color:#ff7b72;font-weight:bold">=</span> dict()
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">for</span> cam_name <span style="color:#ff7b72;font-weight:bold">in</span> self<span style="color:#ff7b72;font-weight:bold">.</span>camera_names:
+</span></span><span style="display:flex;"><span>                image_dict[cam_name] <span style="color:#ff7b72;font-weight:bold">=</span> root[<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;/observations/images/</span><span style="color:#a5d6ff">{</span>cam_name<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#39;</span>][start_ts]
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># get all actions after and including start_ts</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">if</span> is_sim:
+</span></span><span style="display:flex;"><span>                action <span style="color:#ff7b72;font-weight:bold">=</span> root[<span style="color:#a5d6ff">&#39;/action&#39;</span>][start_ts:]
+</span></span><span style="display:flex;"><span>                action_len <span style="color:#ff7b72;font-weight:bold">=</span> episode_len <span style="color:#ff7b72;font-weight:bold">-</span> start_ts
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">else</span>:
+</span></span><span style="display:flex;"><span>                action <span style="color:#ff7b72;font-weight:bold">=</span> root[<span style="color:#a5d6ff">&#39;/action&#39;</span>][max(<span style="color:#a5d6ff">0</span>, start_ts <span style="color:#ff7b72;font-weight:bold">-</span> <span style="color:#a5d6ff">1</span>):] <span style="color:#8b949e;font-style:italic"># hack, to make timesteps more aligned</span>
+</span></span><span style="display:flex;"><span>                action_len <span style="color:#ff7b72;font-weight:bold">=</span> episode_len <span style="color:#ff7b72;font-weight:bold">-</span> max(<span style="color:#a5d6ff">0</span>, start_ts <span style="color:#ff7b72;font-weight:bold">-</span> <span style="color:#a5d6ff">1</span>) <span style="color:#8b949e;font-style:italic"># hack, to make timesteps more aligned</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>is_sim <span style="color:#ff7b72;font-weight:bold">=</span> is_sim
+</span></span><span style="display:flex;"><span>        padded_action <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>zeros(original_action_shape, dtype<span style="color:#ff7b72;font-weight:bold">=</span>np<span style="color:#ff7b72;font-weight:bold">.</span>float32)
+</span></span><span style="display:flex;"><span>        padded_action[:action_len] <span style="color:#ff7b72;font-weight:bold">=</span> action
+</span></span><span style="display:flex;"><span>        is_pad <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>zeros(episode_len)
+</span></span><span style="display:flex;"><span>        is_pad[action_len:] <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># new axis for different cameras</span>
+</span></span><span style="display:flex;"><span>        all_cam_images <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">for</span> cam_name <span style="color:#ff7b72;font-weight:bold">in</span> self<span style="color:#ff7b72;font-weight:bold">.</span>camera_names:
+</span></span><span style="display:flex;"><span>            all_cam_images<span style="color:#ff7b72;font-weight:bold">.</span>append(image_dict[cam_name])
+</span></span><span style="display:flex;"><span>        all_cam_images <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>stack(all_cam_images, axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># construct observations</span>
+</span></span><span style="display:flex;"><span>        image_data <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>from_numpy(all_cam_images)
+</span></span><span style="display:flex;"><span>        qpos_data <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>from_numpy(qpos)<span style="color:#ff7b72;font-weight:bold">.</span>float()
+</span></span><span style="display:flex;"><span>        action_data <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>from_numpy(padded_action)<span style="color:#ff7b72;font-weight:bold">.</span>float()
+</span></span><span style="display:flex;"><span>        is_pad <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>from_numpy(is_pad)<span style="color:#ff7b72;font-weight:bold">.</span>bool()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># channel last</span>
+</span></span><span style="display:flex;"><span>        image_data <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>einsum(<span style="color:#a5d6ff">&#39;k h w c -&gt; k c h w&#39;</span>, image_data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># normalize image and change dtype to float</span>
+</span></span><span style="display:flex;"><span>        image_data <span style="color:#ff7b72;font-weight:bold">=</span> image_data <span style="color:#ff7b72;font-weight:bold">/</span> <span style="color:#a5d6ff">255.0</span>
+</span></span><span style="display:flex;"><span>        action_data <span style="color:#ff7b72;font-weight:bold">=</span> (action_data <span style="color:#ff7b72;font-weight:bold">-</span> self<span style="color:#ff7b72;font-weight:bold">.</span>norm_stats[<span style="color:#a5d6ff">&#34;action_mean&#34;</span>]) <span style="color:#ff7b72;font-weight:bold">/</span> self<span style="color:#ff7b72;font-weight:bold">.</span>norm_stats[<span style="color:#a5d6ff">&#34;action_std&#34;</span>]
+</span></span><span style="display:flex;"><span>        qpos_data <span style="color:#ff7b72;font-weight:bold">=</span> (qpos_data <span style="color:#ff7b72;font-weight:bold">-</span> self<span style="color:#ff7b72;font-weight:bold">.</span>norm_stats[<span style="color:#a5d6ff">&#34;qpos_mean&#34;</span>]) <span style="color:#ff7b72;font-weight:bold">/</span> self<span style="color:#ff7b72;font-weight:bold">.</span>norm_stats[<span style="color:#a5d6ff">&#34;qpos_std&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">return</span> image_data, qpos_data, action_data, is_pad
+</span></span></code></pre></div><p>Here</p>
+<p><code>image_data</code>: Sampling image data</p>
+<p><code>qpos_data</code>: Positions (eg joint angles)</p>
+<p><code>action_data</code>: Actions</p>
+<p><code>is_pad</code> : It tells us how far it padded.</p>
+<h2 id="policy">
+  Policy
+  <a class="heading-link" href="#policy">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torch.nn</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">nn</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">torch.nn</span> <span style="color:#ff7b72">import</span> functional <span style="color:#ff7b72">as</span> F
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torchvision.transforms</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">transforms</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">detr.main</span> <span style="color:#ff7b72">import</span> build_ACT_model_and_optimizer, build_CNNMLP_model_and_optimizer
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">IPython</span>
+</span></span><span style="display:flex;"><span>e <span style="color:#ff7b72;font-weight:bold">=</span> IPython<span style="color:#ff7b72;font-weight:bold">.</span>embed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">class</span> <span style="color:#f0883e;font-weight:bold">ACTPolicy</span>(nn<span style="color:#ff7b72;font-weight:bold">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> __init__(self, args_override):
+</span></span><span style="display:flex;"><span>        super()<span style="color:#ff7b72;font-weight:bold">.</span>__init__()
+</span></span><span style="display:flex;"><span>        model, optimizer <span style="color:#ff7b72;font-weight:bold">=</span> build_ACT_model_and_optimizer(args_override)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>model <span style="color:#ff7b72;font-weight:bold">=</span> model <span style="color:#8b949e;font-style:italic"># CVAE decoder conditional Variational Auto encoder</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>optimizer <span style="color:#ff7b72;font-weight:bold">=</span> optimizer
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>kl_weight <span style="color:#ff7b72;font-weight:bold">=</span> args_override[<span style="color:#a5d6ff">&#39;kl_weight&#39;</span>]
+</span></span><span style="display:flex;"><span>        print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;KL Weight </span><span style="color:#a5d6ff">{</span>self<span style="color:#ff7b72;font-weight:bold">.</span>kl_weight<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> __call__(self, qpos, image, actions<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">None</span>, is_pad<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">None</span>):
+</span></span><span style="display:flex;"><span>        env_state <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">None</span>
+</span></span><span style="display:flex;"><span>        normalize <span style="color:#ff7b72;font-weight:bold">=</span> transforms<span style="color:#ff7b72;font-weight:bold">.</span>Normalize(mean<span style="color:#ff7b72;font-weight:bold">=</span>[<span style="color:#a5d6ff">0.485</span>, <span style="color:#a5d6ff">0.456</span>, <span style="color:#a5d6ff">0.406</span>],
+</span></span><span style="display:flex;"><span>                                         std<span style="color:#ff7b72;font-weight:bold">=</span>[<span style="color:#a5d6ff">0.229</span>, <span style="color:#a5d6ff">0.224</span>, <span style="color:#a5d6ff">0.225</span>])
+</span></span><span style="display:flex;"><span>        image <span style="color:#ff7b72;font-weight:bold">=</span> normalize(image)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">if</span> actions <span style="color:#ff7b72;font-weight:bold">is</span> <span style="color:#ff7b72;font-weight:bold">not</span> <span style="color:#79c0ff">None</span>: <span style="color:#8b949e;font-style:italic"># training time</span>
+</span></span><span style="display:flex;"><span>            actions <span style="color:#ff7b72;font-weight:bold">=</span> actions[:, :self<span style="color:#ff7b72;font-weight:bold">.</span>model<span style="color:#ff7b72;font-weight:bold">.</span>num_queries]
+</span></span><span style="display:flex;"><span>            is_pad <span style="color:#ff7b72;font-weight:bold">=</span> is_pad[:, :self<span style="color:#ff7b72;font-weight:bold">.</span>model<span style="color:#ff7b72;font-weight:bold">.</span>num_queries]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            a_hat, is_pad_hat, (mu, logvar) <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>model(qpos, image, env_state, actions, is_pad)
+</span></span><span style="display:flex;"><span>            total_kld, dim_wise_kld, mean_kld <span style="color:#ff7b72;font-weight:bold">=</span> kl_divergence(mu, logvar)
+</span></span><span style="display:flex;"><span>            loss_dict <span style="color:#ff7b72;font-weight:bold">=</span> dict()
+</span></span><span style="display:flex;"><span>            all_l1 <span style="color:#ff7b72;font-weight:bold">=</span> F<span style="color:#ff7b72;font-weight:bold">.</span>l1_loss(actions, a_hat, reduction<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;none&#39;</span>)
+</span></span><span style="display:flex;"><span>            l1 <span style="color:#ff7b72;font-weight:bold">=</span> (all_l1 <span style="color:#ff7b72;font-weight:bold">*</span> <span style="color:#ff7b72;font-weight:bold">~</span>is_pad<span style="color:#ff7b72;font-weight:bold">.</span>unsqueeze(<span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#a5d6ff">1</span>))<span style="color:#ff7b72;font-weight:bold">.</span>mean()
+</span></span><span style="display:flex;"><span>            loss_dict[<span style="color:#a5d6ff">&#39;l1&#39;</span>] <span style="color:#ff7b72;font-weight:bold">=</span> l1 <span style="color:#8b949e;font-style:italic"># regression loss </span>
+</span></span><span style="display:flex;"><span>            loss_dict[<span style="color:#a5d6ff">&#39;kl&#39;</span>] <span style="color:#ff7b72;font-weight:bold">=</span> total_kld[<span style="color:#a5d6ff">0</span>] <span style="color:#8b949e;font-style:italic">#</span>
+</span></span><span style="display:flex;"><span>            loss_dict[<span style="color:#a5d6ff">&#39;loss&#39;</span>] <span style="color:#ff7b72;font-weight:bold">=</span> loss_dict[<span style="color:#a5d6ff">&#39;l1&#39;</span>] <span style="color:#ff7b72;font-weight:bold">+</span> loss_dict[<span style="color:#a5d6ff">&#39;kl&#39;</span>] <span style="color:#ff7b72;font-weight:bold">*</span> self<span style="color:#ff7b72;font-weight:bold">.</span>kl_weight
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">return</span> loss_dict
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">else</span>: <span style="color:#8b949e;font-style:italic"># inference time</span>
+</span></span><span style="display:flex;"><span>            a_hat, _, (_, _) <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>model(qpos, image, env_state)
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">return</span> a_hat
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">configure_optimizers</span>(self):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">return</span> self<span style="color:#ff7b72;font-weight:bold">.</span>optimizer
+</span></span></code></pre></div><h2 id="training-code">
+  Training code
+  <a class="heading-link" href="#training-code">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<p><code>train.py file</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">settings.var</span> <span style="color:#ff7b72">import</span> <span style="color:#ff7b72;font-weight:bold">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">os</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">pickle</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">argparse</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">copy</span> <span style="color:#ff7b72">import</span> deepcopy
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">matplotlib.pyplot</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">plt</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">training.utils</span> <span style="color:#ff7b72">import</span> <span style="color:#ff7b72;font-weight:bold">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>parser <span style="color:#ff7b72;font-weight:bold">=</span> argparse<span style="color:#ff7b72;font-weight:bold">.</span>ArgumentParser()
+</span></span><span style="display:flex;"><span>parser<span style="color:#ff7b72;font-weight:bold">.</span>add_argument(<span style="color:#a5d6ff">&#39;--task&#39;</span>, type<span style="color:#ff7b72;font-weight:bold">=</span>str, default<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;&#39;</span>)
+</span></span><span style="display:flex;"><span>args <span style="color:#ff7b72;font-weight:bold">=</span> parser<span style="color:#ff7b72;font-weight:bold">.</span>parse_args()
+</span></span><span style="display:flex;"><span>task <span style="color:#ff7b72;font-weight:bold">=</span> args<span style="color:#ff7b72;font-weight:bold">.</span>task
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># configs</span>
+</span></span><span style="display:flex;"><span>task_cfg <span style="color:#ff7b72;font-weight:bold">=</span> TASK_CONFIG
+</span></span><span style="display:flex;"><span>train_cfg <span style="color:#ff7b72;font-weight:bold">=</span> TRAIN_CONFIG
+</span></span><span style="display:flex;"><span>policy_config <span style="color:#ff7b72;font-weight:bold">=</span> POLICY_CONFIG
+</span></span><span style="display:flex;"><span>checkpoint_dir <span style="color:#ff7b72;font-weight:bold">=</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>join(train_cfg[<span style="color:#a5d6ff">&#39;checkpoint_dir&#39;</span>], task)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#8b949e;font-style:italic"># device</span>
+</span></span><span style="display:flex;"><span>device <span style="color:#ff7b72;font-weight:bold">=</span> os<span style="color:#ff7b72;font-weight:bold">.</span>environ[<span style="color:#a5d6ff">&#39;DEVICE&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">forward_pass</span>(data, policy):
+</span></span><span style="display:flex;"><span>    image_data, qpos_data, action_data, is_pad <span style="color:#ff7b72;font-weight:bold">=</span> data
+</span></span><span style="display:flex;"><span>    qpos_data <span style="color:#ff7b72;font-weight:bold">=</span> qpos_data<span style="color:#ff7b72;font-weight:bold">.</span>float()
+</span></span><span style="display:flex;"><span>    action_data <span style="color:#ff7b72;font-weight:bold">=</span> action_data<span style="color:#ff7b72;font-weight:bold">.</span>float()
+</span></span><span style="display:flex;"><span>    image_data, qpos_data, action_data, is_pad <span style="color:#ff7b72;font-weight:bold">=</span> image_data<span style="color:#ff7b72;font-weight:bold">.</span>to(device), 
+</span></span><span style="display:flex;"><span>    qpos_data<span style="color:#ff7b72;font-weight:bold">.</span>to(device), action_data<span style="color:#ff7b72;font-weight:bold">.</span>to(device), is_pad<span style="color:#ff7b72;font-weight:bold">.</span>to(device)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> policy(qpos_data, image_data, action_data, is_pad) <span style="color:#8b949e;font-style:italic"># TODO remove None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">plot_history</span>(train_history, validation_history, num_epochs, ckpt_dir, seed):
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># save training curves</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">for</span> key <span style="color:#ff7b72;font-weight:bold">in</span> train_history[<span style="color:#a5d6ff">0</span>]:
+</span></span><span style="display:flex;"><span>        plot_path <span style="color:#ff7b72;font-weight:bold">=</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>join(ckpt_dir, <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;train_val_</span><span style="color:#a5d6ff">{</span>key<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">_seed_</span><span style="color:#a5d6ff">{</span>seed<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">.png&#39;</span>)
+</span></span><span style="display:flex;"><span>        plt<span style="color:#ff7b72;font-weight:bold">.</span>figure()
+</span></span><span style="display:flex;"><span>        train_values <span style="color:#ff7b72;font-weight:bold">=</span> [summary[key]<span style="color:#ff7b72;font-weight:bold">.</span>item() <span style="color:#ff7b72">for</span> summary <span style="color:#ff7b72;font-weight:bold">in</span> train_history]
+</span></span><span style="display:flex;"><span>        val_values <span style="color:#ff7b72;font-weight:bold">=</span> [summary[key]<span style="color:#ff7b72;font-weight:bold">.</span>item() <span style="color:#ff7b72">for</span> summary <span style="color:#ff7b72;font-weight:bold">in</span> validation_history]
+</span></span><span style="display:flex;"><span>        plt<span style="color:#ff7b72;font-weight:bold">.</span>plot(np<span style="color:#ff7b72;font-weight:bold">.</span>linspace(<span style="color:#a5d6ff">0</span>, num_epochs<span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#a5d6ff">1</span>, len(train_history)), train_values, label<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;train&#39;</span>)
+</span></span><span style="display:flex;"><span>        plt<span style="color:#ff7b72;font-weight:bold">.</span>plot(np<span style="color:#ff7b72;font-weight:bold">.</span>linspace(<span style="color:#a5d6ff">0</span>, num_epochs<span style="color:#ff7b72;font-weight:bold">-</span><span style="color:#a5d6ff">1</span>, len(validation_history)), val_values, label<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">&#39;validation&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># plt.ylim([-0.1, 1])</span>
+</span></span><span style="display:flex;"><span>        plt<span style="color:#ff7b72;font-weight:bold">.</span>tight_layout()
+</span></span><span style="display:flex;"><span>        plt<span style="color:#ff7b72;font-weight:bold">.</span>legend()
+</span></span><span style="display:flex;"><span>        plt<span style="color:#ff7b72;font-weight:bold">.</span>title(key)
+</span></span><span style="display:flex;"><span>        plt<span style="color:#ff7b72;font-weight:bold">.</span>savefig(plot_path)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;Saved plots to </span><span style="color:#a5d6ff">{</span>ckpt_dir<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">train_bc</span>(train_dataloader, val_dataloader, policy_config):
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># load policy</span>
+</span></span><span style="display:flex;"><span>    policy <span style="color:#ff7b72;font-weight:bold">=</span> make_policy(policy_config[<span style="color:#a5d6ff">&#39;policy_class&#39;</span>], policy_config)
+</span></span><span style="display:flex;"><span>    policy<span style="color:#ff7b72;font-weight:bold">.</span>to(device)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># load optimizer</span>
+</span></span><span style="display:flex;"><span>    optimizer <span style="color:#ff7b72;font-weight:bold">=</span> make_optimizer(policy_config[<span style="color:#a5d6ff">&#39;policy_class&#39;</span>], policy)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># create checkpoint dir if not exists</span>
+</span></span><span style="display:flex;"><span>    os<span style="color:#ff7b72;font-weight:bold">.</span>makedirs(checkpoint_dir, exist_ok<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    train_history <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>    validation_history <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>    min_val_loss <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>inf
+</span></span><span style="display:flex;"><span>    best_ckpt_info <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">None</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">for</span> epoch <span style="color:#ff7b72;font-weight:bold">in</span> range(train_cfg[<span style="color:#a5d6ff">&#39;num_epochs&#39;</span>]):
+</span></span><span style="display:flex;"><span>        print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;</span><span style="color:#79c0ff">\n</span><span style="color:#a5d6ff">Epoch </span><span style="color:#a5d6ff">{</span>epoch<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># validation</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">with</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>inference_mode():
+</span></span><span style="display:flex;"><span>            policy<span style="color:#ff7b72;font-weight:bold">.</span>eval()
+</span></span><span style="display:flex;"><span>            epoch_dicts <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">for</span> batch_idx, data <span style="color:#ff7b72;font-weight:bold">in</span> enumerate(val_dataloader):
+</span></span><span style="display:flex;"><span>                forward_dict <span style="color:#ff7b72;font-weight:bold">=</span> forward_pass(data, policy)
+</span></span><span style="display:flex;"><span>                epoch_dicts<span style="color:#ff7b72;font-weight:bold">.</span>append(forward_dict)
+</span></span><span style="display:flex;"><span>            epoch_summary <span style="color:#ff7b72;font-weight:bold">=</span> compute_dict_mean(epoch_dicts)
+</span></span><span style="display:flex;"><span>            validation_history<span style="color:#ff7b72;font-weight:bold">.</span>append(epoch_summary)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            epoch_val_loss <span style="color:#ff7b72;font-weight:bold">=</span> epoch_summary[<span style="color:#a5d6ff">&#39;loss&#39;</span>]
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">if</span> epoch_val_loss <span style="color:#ff7b72;font-weight:bold">&lt;</span> min_val_loss:
+</span></span><span style="display:flex;"><span>                min_val_loss <span style="color:#ff7b72;font-weight:bold">=</span> epoch_val_loss
+</span></span><span style="display:flex;"><span>                best_ckpt_info <span style="color:#ff7b72;font-weight:bold">=</span> (epoch, min_val_loss, deepcopy(policy<span style="color:#ff7b72;font-weight:bold">.</span>state_dict()))
+</span></span><span style="display:flex;"><span>        print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;Val loss:   </span><span style="color:#a5d6ff">{</span>epoch_val_loss<span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">.5f</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#39;</span>)
+</span></span><span style="display:flex;"><span>        summary_string <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">for</span> k, v <span style="color:#ff7b72;font-weight:bold">in</span> epoch_summary<span style="color:#ff7b72;font-weight:bold">.</span>items():
+</span></span><span style="display:flex;"><span>            summary_string <span style="color:#ff7b72;font-weight:bold">+=</span> <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;</span><span style="color:#a5d6ff">{</span>k<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">: </span><span style="color:#a5d6ff">{</span>v<span style="color:#ff7b72;font-weight:bold">.</span>item()<span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">.3f</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff"> &#39;</span>
+</span></span><span style="display:flex;"><span>        print(summary_string)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># training</span>
+</span></span><span style="display:flex;"><span>        policy<span style="color:#ff7b72;font-weight:bold">.</span>train()
+</span></span><span style="display:flex;"><span>        optimizer<span style="color:#ff7b72;font-weight:bold">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">for</span> batch_idx, data <span style="color:#ff7b72;font-weight:bold">in</span> enumerate(train_dataloader):
+</span></span><span style="display:flex;"><span>            forward_dict <span style="color:#ff7b72;font-weight:bold">=</span> forward_pass(data, policy)
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># backward</span>
+</span></span><span style="display:flex;"><span>            loss <span style="color:#ff7b72;font-weight:bold">=</span> forward_dict[<span style="color:#a5d6ff">&#39;loss&#39;</span>]
+</span></span><span style="display:flex;"><span>            loss<span style="color:#ff7b72;font-weight:bold">.</span>backward()
+</span></span><span style="display:flex;"><span>            optimizer<span style="color:#ff7b72;font-weight:bold">.</span>step()
+</span></span><span style="display:flex;"><span>            optimizer<span style="color:#ff7b72;font-weight:bold">.</span>zero_grad()
+</span></span><span style="display:flex;"><span>            train_history<span style="color:#ff7b72;font-weight:bold">.</span>append(detach_dict(forward_dict))
+</span></span><span style="display:flex;"><span>        epoch_summary <span style="color:#ff7b72;font-weight:bold">=</span> compute_dict_mean(train_history[(batch_idx<span style="color:#ff7b72;font-weight:bold">+</span><span style="color:#a5d6ff">1</span>)<span style="color:#ff7b72;font-weight:bold">*</span>epoch:(batch_idx<span style="color:#ff7b72;font-weight:bold">+</span><span style="color:#a5d6ff">1</span>)<span style="color:#ff7b72;font-weight:bold">*</span>(epoch<span style="color:#ff7b72;font-weight:bold">+</span><span style="color:#a5d6ff">1</span>)])
+</span></span><span style="display:flex;"><span>        epoch_train_loss <span style="color:#ff7b72;font-weight:bold">=</span> epoch_summary[<span style="color:#a5d6ff">&#39;loss&#39;</span>]
+</span></span><span style="display:flex;"><span>        print(<span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;Train loss: </span><span style="color:#a5d6ff">{</span>epoch_train_loss<span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">.5f</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">&#39;</span>)
+</span></span><span style="display:flex;"><span>        summary_string <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">for</span> k, v <span style="color:#ff7b72;font-weight:bold">in</span> epoch_summary<span style="color:#ff7b72;font-weight:bold">.</span>items():
+</span></span><span style="display:flex;"><span>            summary_string <span style="color:#ff7b72;font-weight:bold">+=</span> <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;</span><span style="color:#a5d6ff">{</span>k<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">: </span><span style="color:#a5d6ff">{</span>v<span style="color:#ff7b72;font-weight:bold">.</span>item()<span style="color:#a5d6ff">:</span><span style="color:#a5d6ff">.3f</span><span style="color:#a5d6ff">}</span><span style="color:#a5d6ff"> &#39;</span>
+</span></span><span style="display:flex;"><span>        print(summary_string)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">if</span> epoch <span style="color:#ff7b72;font-weight:bold">%</span> <span style="color:#a5d6ff">200</span> <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">0</span>:
+</span></span><span style="display:flex;"><span>            ckpt_path <span style="color:#ff7b72;font-weight:bold">=</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>join(checkpoint_dir, <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#34;policy_epoch_</span><span style="color:#a5d6ff">{</span>epoch<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">_seed_</span><span style="color:#a5d6ff">{</span>train_cfg[<span style="color:#a5d6ff">&#39;seed&#39;</span>]<span style="color:#a5d6ff">}</span><span style="color:#a5d6ff">.ckpt&#34;</span>)
+</span></span><span style="display:flex;"><span>            torch<span style="color:#ff7b72;font-weight:bold">.</span>save(policy<span style="color:#ff7b72;font-weight:bold">.</span>state_dict(), ckpt_path)
+</span></span><span style="display:flex;"><span>            plot_history(train_history, validation_history, epoch, checkpoint_dir, train_cfg[<span style="color:#a5d6ff">&#39;seed&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ckpt_path <span style="color:#ff7b72;font-weight:bold">=</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>join(checkpoint_dir, <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;policy_last.ckpt&#39;</span>)
+</span></span><span style="display:flex;"><span>    torch<span style="color:#ff7b72;font-weight:bold">.</span>save(policy<span style="color:#ff7b72;font-weight:bold">.</span>state_dict(), ckpt_path)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">if</span> __name__ <span style="color:#ff7b72;font-weight:bold">==</span> <span style="color:#a5d6ff">&#39;__main__&#39;</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># set seed</span>
+</span></span><span style="display:flex;"><span>    set_seed(train_cfg[<span style="color:#a5d6ff">&#39;seed&#39;</span>])
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># create ckpt dir if not exists</span>
+</span></span><span style="display:flex;"><span>    os<span style="color:#ff7b72;font-weight:bold">.</span>makedirs(checkpoint_dir, exist_ok<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">True</span>)
+</span></span><span style="display:flex;"><span>   <span style="color:#8b949e;font-style:italic"># number of training episodes</span>
+</span></span><span style="display:flex;"><span>    data_dir <span style="color:#ff7b72;font-weight:bold">=</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>join(task_cfg[<span style="color:#a5d6ff">&#39;dataset_dir&#39;</span>], task)
+</span></span><span style="display:flex;"><span>    num_episodes <span style="color:#ff7b72;font-weight:bold">=</span> len(os<span style="color:#ff7b72;font-weight:bold">.</span>listdir(data_dir))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># load data</span>
+</span></span><span style="display:flex;"><span>    train_dataloader, val_dataloader, stats, _ <span style="color:#ff7b72;font-weight:bold">=</span> load_data(data_dir, num_episodes, task_cfg[<span style="color:#a5d6ff">&#39;camera_names&#39;</span>],
+</span></span><span style="display:flex;"><span>                                                            train_cfg[<span style="color:#a5d6ff">&#39;batch_size_train&#39;</span>], train_cfg[<span style="color:#a5d6ff">&#39;batch_size_val&#39;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># save stats</span>
+</span></span><span style="display:flex;"><span>    stats_path <span style="color:#ff7b72;font-weight:bold">=</span> os<span style="color:#ff7b72;font-weight:bold">.</span>path<span style="color:#ff7b72;font-weight:bold">.</span>join(checkpoint_dir, <span style="color:#79c0ff">f</span><span style="color:#a5d6ff">&#39;dataset_stats.pkl&#39;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">with</span> open(stats_path, <span style="color:#a5d6ff">&#39;wb&#39;</span>) <span style="color:#ff7b72">as</span> f:
+</span></span><span style="display:flex;"><span>        pickle<span style="color:#ff7b72;font-weight:bold">.</span>dump(stats, f)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># train</span>
+</span></span><span style="display:flex;"><span>    train_bc(train_dataloader, val_dataloader, policy_config)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">    The data loader is very important bcs we are pluging our input data here 
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">    The data lodaer like an iterator or a smampler that samples each part of the data
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">    were we will have the training data validation data and statastics which is just to normalize our data
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">    &#39;&#39;&#39;</span>
+</span></span></code></pre></div><h2 id="model">
+  Model
+  <a class="heading-link" href="#model">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h2>
+<div class="highlight"><pre tabindex="0" style="color:#e6edf3;background-color:#0d1117;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">torch</span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">torch</span> <span style="color:#ff7b72">import</span> nn
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">torch.autograd</span> <span style="color:#ff7b72">import</span> Variable
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">.backbone</span> <span style="color:#ff7b72">import</span> build_backbone
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">from</span> <span style="color:#ff7b72">.transformer</span> <span style="color:#ff7b72">import</span> build_transformer, TransformerEncoder, TransformerEncoderLayer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">numpy</span> <span style="color:#ff7b72">as</span> <span style="color:#ff7b72">np</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">import</span> <span style="color:#ff7b72">IPython</span>
+</span></span><span style="display:flex;"><span>e <span style="color:#ff7b72;font-weight:bold">=</span> IPython<span style="color:#ff7b72;font-weight:bold">.</span>embed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>device <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>device(<span style="color:#a5d6ff">&#39;cuda&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">reparametrize</span>(mu, logvar):
+</span></span><span style="display:flex;"><span>    std <span style="color:#ff7b72;font-weight:bold">=</span> logvar<span style="color:#ff7b72;font-weight:bold">.</span>div(<span style="color:#a5d6ff">2</span>)<span style="color:#ff7b72;font-weight:bold">.</span>exp()
+</span></span><span style="display:flex;"><span>    eps <span style="color:#ff7b72;font-weight:bold">=</span> Variable(std<span style="color:#ff7b72;font-weight:bold">.</span>data<span style="color:#ff7b72;font-weight:bold">.</span>new(std<span style="color:#ff7b72;font-weight:bold">.</span>size())<span style="color:#ff7b72;font-weight:bold">.</span>normal_())
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> mu <span style="color:#ff7b72;font-weight:bold">+</span> std <span style="color:#ff7b72;font-weight:bold">*</span> eps
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">get_sinusoid_encoding_table</span>(n_position, d_hid):
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">get_position_angle_vec</span>(position):
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">return</span> [position <span style="color:#ff7b72;font-weight:bold">/</span> np<span style="color:#ff7b72;font-weight:bold">.</span>power(<span style="color:#a5d6ff">10000</span>, <span style="color:#a5d6ff">2</span> <span style="color:#ff7b72;font-weight:bold">*</span> (hid_j <span style="color:#ff7b72;font-weight:bold">//</span> <span style="color:#a5d6ff">2</span>) <span style="color:#ff7b72;font-weight:bold">/</span> d_hid) <span style="color:#ff7b72">for</span> hid_j <span style="color:#ff7b72;font-weight:bold">in</span> range(d_hid)]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    sinusoid_table <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>array([get_position_angle_vec(pos_i) <span style="color:#ff7b72">for</span> pos_i <span style="color:#ff7b72;font-weight:bold">in</span> range(n_position)])
+</span></span><span style="display:flex;"><span>    sinusoid_table[:, <span style="color:#a5d6ff">0</span>::<span style="color:#a5d6ff">2</span>] <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>sin(sinusoid_table[:, <span style="color:#a5d6ff">0</span>::<span style="color:#a5d6ff">2</span>])  <span style="color:#8b949e;font-style:italic"># dim 2i</span>
+</span></span><span style="display:flex;"><span>    sinusoid_table[:, <span style="color:#a5d6ff">1</span>::<span style="color:#a5d6ff">2</span>] <span style="color:#ff7b72;font-weight:bold">=</span> np<span style="color:#ff7b72;font-weight:bold">.</span>cos(sinusoid_table[:, <span style="color:#a5d6ff">1</span>::<span style="color:#a5d6ff">2</span>])  <span style="color:#8b949e;font-style:italic"># dim 2i+1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>FloatTensor(sinusoid_table)<span style="color:#ff7b72;font-weight:bold">.</span>unsqueeze(<span style="color:#a5d6ff">0</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">class</span> <span style="color:#f0883e;font-weight:bold">DETRVAE</span>(nn<span style="color:#ff7b72;font-weight:bold">.</span>Module):
+</span></span><span style="display:flex;"><span>    <span style="color:#a5d6ff">&#34;&#34;&#34; This is the DETR module that performs object detection &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> __init__(self, backbones, transformer, encoder, state_dim, num_queries, camera_names):
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#34;&#34;&#34; Initializes the model.
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">        Parameters:
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">            backbones: torch module of the backbone to be used. See backbone.py
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">            transformer: torch module of the transformer architecture. See transformer.py
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">            state_dim: robot state dimension of the environment
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">            num_queries: number of object queries, ie detection slot. This is the maximal number of objects
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">                         DETR can detect in a single image. For COCO, we recommend 100 queries.
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">            aux_loss: True if auxiliary decoding losses (loss at each decoder layer) are to be used.
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        super()<span style="color:#ff7b72;font-weight:bold">.</span>__init__()
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>num_queries <span style="color:#ff7b72;font-weight:bold">=</span> num_queries
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>camera_names <span style="color:#ff7b72;font-weight:bold">=</span> camera_names
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>transformer <span style="color:#ff7b72;font-weight:bold">=</span> transformer
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>encoder <span style="color:#ff7b72;font-weight:bold">=</span> encoder
+</span></span><span style="display:flex;"><span>        hidden_dim <span style="color:#ff7b72;font-weight:bold">=</span> transformer<span style="color:#ff7b72;font-weight:bold">.</span>d_model
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>action_head <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(hidden_dim, state_dim)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>is_pad_head <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(hidden_dim, <span style="color:#a5d6ff">1</span>)
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>query_embed <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Embedding(num_queries, hidden_dim)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">if</span> backbones <span style="color:#ff7b72;font-weight:bold">is</span> <span style="color:#ff7b72;font-weight:bold">not</span> <span style="color:#79c0ff">None</span>:
+</span></span><span style="display:flex;"><span>            self<span style="color:#ff7b72;font-weight:bold">.</span>input_proj <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Conv2d(backbones[<span style="color:#a5d6ff">0</span>]<span style="color:#ff7b72;font-weight:bold">.</span>num_channels, hidden_dim, kernel_size<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>)
+</span></span><span style="display:flex;"><span>            self<span style="color:#ff7b72;font-weight:bold">.</span>backbones <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>ModuleList(backbones)
+</span></span><span style="display:flex;"><span>            self<span style="color:#ff7b72;font-weight:bold">.</span>input_proj_robot_state <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(<span style="color:#a5d6ff">8</span>, hidden_dim)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">else</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># input_dim = 14 + 7 # robot_state + env_state</span>
+</span></span><span style="display:flex;"><span>            self<span style="color:#ff7b72;font-weight:bold">.</span>input_proj_robot_state <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(<span style="color:#a5d6ff">8</span>, hidden_dim)
+</span></span><span style="display:flex;"><span>            self<span style="color:#ff7b72;font-weight:bold">.</span>input_proj_env_state <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(<span style="color:#a5d6ff">8</span>, hidden_dim)
+</span></span><span style="display:flex;"><span>            self<span style="color:#ff7b72;font-weight:bold">.</span>pos <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>nn<span style="color:#ff7b72;font-weight:bold">.</span>Embedding(<span style="color:#a5d6ff">2</span>, hidden_dim)
+</span></span><span style="display:flex;"><span>            self<span style="color:#ff7b72;font-weight:bold">.</span>backbones <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># encoder extra parameters</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>latent_dim <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">32</span> <span style="color:#8b949e;font-style:italic"># final size of latent z # TODO tune </span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>cls_embed <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Embedding(<span style="color:#a5d6ff">1</span>, hidden_dim) <span style="color:#8b949e;font-style:italic"># extra cls token embedding</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>encoder_action_proj <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(<span style="color:#a5d6ff">8</span>, hidden_dim) <span style="color:#8b949e;font-style:italic"># project action to embedding</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>encoder_joint_proj <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(<span style="color:#a5d6ff">8</span>, hidden_dim)  <span style="color:#8b949e;font-style:italic"># project qpos to embedding</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>latent_proj <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(hidden_dim, self<span style="color:#ff7b72;font-weight:bold">.</span>latent_dim<span style="color:#ff7b72;font-weight:bold">*</span><span style="color:#a5d6ff">2</span>) <span style="color:#8b949e;font-style:italic"># project hidden state to latent std, var</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>register_buffer(<span style="color:#a5d6ff">&#39;pos_table&#39;</span>, get_sinusoid_encoding_table(<span style="color:#a5d6ff">1</span><span style="color:#ff7b72;font-weight:bold">+</span><span style="color:#a5d6ff">1</span><span style="color:#ff7b72;font-weight:bold">+</span>num_queries, hidden_dim)) <span style="color:#8b949e;font-style:italic"># [CLS], qpos, a_seq</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># decoder extra parameters</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>latent_out_proj <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Linear(self<span style="color:#ff7b72;font-weight:bold">.</span>latent_dim, hidden_dim) <span style="color:#8b949e;font-style:italic"># project latent sample to embedding</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#ff7b72;font-weight:bold">.</span>additional_pos_embed <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>Embedding(<span style="color:#a5d6ff">2</span>, hidden_dim) <span style="color:#8b949e;font-style:italic"># learned position embedding for proprio and latent</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">forward</span>(self, qpos, image, env_state, actions<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">None</span>, is_pad<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#79c0ff">None</span>):
+</span></span><span style="display:flex;"><span>        <span style="color:#a5d6ff">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">        qpos: batch, qpos_dim
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">        image: batch, num_cam, channel, height, width
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">        env_state: None
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">        actions: batch, seq, action_dim
+</span></span></span><span style="display:flex;"><span><span style="color:#a5d6ff">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        is_training <span style="color:#ff7b72;font-weight:bold">=</span> actions <span style="color:#ff7b72;font-weight:bold">is</span> <span style="color:#ff7b72;font-weight:bold">not</span> <span style="color:#79c0ff">None</span> <span style="color:#8b949e;font-style:italic"># train or val</span>
+</span></span><span style="display:flex;"><span>        bs, _ <span style="color:#ff7b72;font-weight:bold">=</span> qpos<span style="color:#ff7b72;font-weight:bold">.</span>shape
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># actions = actions.to(torch.float32) if actions is not None else actions</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># qpos = qpos.to(torch.float32)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic"># image = image.to(torch.float32)</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#8b949e;font-style:italic">### Obtain latent z from action sequence</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">if</span> is_training:
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># project action sequence to embedding dim, and concat with a CLS token</span>
+</span></span><span style="display:flex;"><span>            action_embed <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>encoder_action_proj(actions) <span style="color:#8b949e;font-style:italic"># (bs, seq, hidden_dim)</span>
+</span></span><span style="display:flex;"><span>            qpos_embed <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>encoder_joint_proj(qpos)  <span style="color:#8b949e;font-style:italic"># (bs, hidden_dim)</span>
+</span></span><span style="display:flex;"><span>            qpos_embed <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>unsqueeze(qpos_embed, axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>)  <span style="color:#8b949e;font-style:italic"># (bs, 1, hidden_dim)</span>
+</span></span><span style="display:flex;"><span>            cls_embed <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>cls_embed<span style="color:#ff7b72;font-weight:bold">.</span>weight <span style="color:#8b949e;font-style:italic"># (1, hidden_dim)</span>
+</span></span><span style="display:flex;"><span>            cls_embed <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>unsqueeze(cls_embed, axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">0</span>)<span style="color:#ff7b72;font-weight:bold">.</span>repeat(bs, <span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">1</span>) <span style="color:#8b949e;font-style:italic"># (bs, 1, hidden_dim)</span>
+</span></span><span style="display:flex;"><span>            encoder_input <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>cat([cls_embed, qpos_embed, action_embed], axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>) <span style="color:#8b949e;font-style:italic"># (bs, seq+1, hidden_dim)</span>
+</span></span><span style="display:flex;"><span>            encoder_input <span style="color:#ff7b72;font-weight:bold">=</span> encoder_input<span style="color:#ff7b72;font-weight:bold">.</span>permute(<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">2</span>) <span style="color:#8b949e;font-style:italic"># (seq+1, bs, hidden_dim)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># do not mask cls token</span>
+</span></span><span style="display:flex;"><span>            cls_joint_is_pad <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>full((bs, <span style="color:#a5d6ff">2</span>), <span style="color:#79c0ff">False</span>)<span style="color:#ff7b72;font-weight:bold">.</span>to(qpos<span style="color:#ff7b72;font-weight:bold">.</span>device) <span style="color:#8b949e;font-style:italic"># False: not a padding</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            is_pad <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>cat([cls_joint_is_pad, is_pad], axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>)  <span style="color:#8b949e;font-style:italic"># (bs, seq+1)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># obtain position embedding</span>
+</span></span><span style="display:flex;"><span>            pos_embed <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>pos_table<span style="color:#ff7b72;font-weight:bold">.</span>clone()<span style="color:#ff7b72;font-weight:bold">.</span>detach()
+</span></span><span style="display:flex;"><span>            pos_embed <span style="color:#ff7b72;font-weight:bold">=</span> pos_embed<span style="color:#ff7b72;font-weight:bold">.</span>permute(<span style="color:#a5d6ff">1</span>, <span style="color:#a5d6ff">0</span>, <span style="color:#a5d6ff">2</span>)  <span style="color:#8b949e;font-style:italic"># (seq+1, 1, hidden_dim)</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># query model</span>
+</span></span><span style="display:flex;"><span>            encoder_output <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>encoder(encoder_input, pos<span style="color:#ff7b72;font-weight:bold">=</span>pos_embed, src_key_padding_mask<span style="color:#ff7b72;font-weight:bold">=</span>is_pad)
+</span></span><span style="display:flex;"><span>            encoder_output <span style="color:#ff7b72;font-weight:bold">=</span> encoder_output[<span style="color:#a5d6ff">0</span>] <span style="color:#8b949e;font-style:italic"># take cls output only</span>
+</span></span><span style="display:flex;"><span>            latent_info <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>latent_proj(encoder_output)
+</span></span><span style="display:flex;"><span>            mu <span style="color:#ff7b72;font-weight:bold">=</span> latent_info[:, :self<span style="color:#ff7b72;font-weight:bold">.</span>latent_dim]
+</span></span><span style="display:flex;"><span>            logvar <span style="color:#ff7b72;font-weight:bold">=</span> latent_info[:, self<span style="color:#ff7b72;font-weight:bold">.</span>latent_dim:]
+</span></span><span style="display:flex;"><span>            latent_sample <span style="color:#ff7b72;font-weight:bold">=</span> reparametrize(mu, logvar)
+</span></span><span style="display:flex;"><span>            latent_input <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>latent_out_proj(latent_sample)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">else</span>:
+</span></span><span style="display:flex;"><span>            mu <span style="color:#ff7b72;font-weight:bold">=</span> logvar <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#79c0ff">None</span>
+</span></span><span style="display:flex;"><span>            latent_sample <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>zeros([bs, self<span style="color:#ff7b72;font-weight:bold">.</span>latent_dim], dtype<span style="color:#ff7b72;font-weight:bold">=</span>torch<span style="color:#ff7b72;font-weight:bold">.</span>float32)<span style="color:#ff7b72;font-weight:bold">.</span>to(qpos<span style="color:#ff7b72;font-weight:bold">.</span>device)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            latent_input <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>latent_out_proj(latent_sample)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">if</span> self<span style="color:#ff7b72;font-weight:bold">.</span>backbones <span style="color:#ff7b72;font-weight:bold">is</span> <span style="color:#ff7b72;font-weight:bold">not</span> <span style="color:#79c0ff">None</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># Image observation features and position embeddings</span>
+</span></span><span style="display:flex;"><span>            all_cam_features <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>            all_cam_pos <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>            <span style="color:#ff7b72">for</span> cam_id, cam_name <span style="color:#ff7b72;font-weight:bold">in</span> enumerate(self<span style="color:#ff7b72;font-weight:bold">.</span>camera_names):
+</span></span><span style="display:flex;"><span>                features, pos <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>backbones[<span style="color:#a5d6ff">0</span>](image[:, cam_id]) <span style="color:#8b949e;font-style:italic"># HARDCODED for single back bone</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#8b949e;font-style:italic"># features, pos = self.backbones[cam_id](image[:, cam_id])</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                features <span style="color:#ff7b72;font-weight:bold">=</span> features[<span style="color:#a5d6ff">0</span>] <span style="color:#8b949e;font-style:italic"># take the last layer feature</span>
+</span></span><span style="display:flex;"><span>                pos <span style="color:#ff7b72;font-weight:bold">=</span> pos[<span style="color:#a5d6ff">0</span>]
+</span></span><span style="display:flex;"><span>                all_cam_features<span style="color:#ff7b72;font-weight:bold">.</span>append(self<span style="color:#ff7b72;font-weight:bold">.</span>input_proj(features))
+</span></span><span style="display:flex;"><span>                all_cam_pos<span style="color:#ff7b72;font-weight:bold">.</span>append(pos)
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># proprioception features</span>
+</span></span><span style="display:flex;"><span>            proprio_input <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>input_proj_robot_state(qpos)
+</span></span><span style="display:flex;"><span>            <span style="color:#8b949e;font-style:italic"># fold camera dimension into width dimension</span>
+</span></span><span style="display:flex;"><span>            src <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>cat(all_cam_features, axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">3</span>)
+</span></span><span style="display:flex;"><span>            pos <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>cat(all_cam_pos, axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">3</span>)
+</span></span><span style="display:flex;"><span>            hs <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>transformer(src, <span style="color:#79c0ff">None</span>, self<span style="color:#ff7b72;font-weight:bold">.</span>query_embed<span style="color:#ff7b72;font-weight:bold">.</span>weight, pos, latent_input, proprio_input, self<span style="color:#ff7b72;font-weight:bold">.</span>additional_pos_embed<span style="color:#ff7b72;font-weight:bold">.</span>weight)[<span style="color:#a5d6ff">0</span>]
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">else</span>:
+</span></span><span style="display:flex;"><span>            qpos <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>input_proj_robot_state(qpos)
+</span></span><span style="display:flex;"><span>            env_state <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>input_proj_env_state(env_state)
+</span></span><span style="display:flex;"><span>            transformer_input <span style="color:#ff7b72;font-weight:bold">=</span> torch<span style="color:#ff7b72;font-weight:bold">.</span>cat([qpos, env_state], axis<span style="color:#ff7b72;font-weight:bold">=</span><span style="color:#a5d6ff">1</span>) <span style="color:#8b949e;font-style:italic"># seq length = 2</span>
+</span></span><span style="display:flex;"><span>            hs <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>transformer(transformer_input, <span style="color:#79c0ff">None</span>, self<span style="color:#ff7b72;font-weight:bold">.</span>query_embed<span style="color:#ff7b72;font-weight:bold">.</span>weight, self<span style="color:#ff7b72;font-weight:bold">.</span>pos<span style="color:#ff7b72;font-weight:bold">.</span>weight)[<span style="color:#a5d6ff">0</span>]
+</span></span><span style="display:flex;"><span>        a_hat <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>action_head(hs)
+</span></span><span style="display:flex;"><span>        is_pad_hat <span style="color:#ff7b72;font-weight:bold">=</span> self<span style="color:#ff7b72;font-weight:bold">.</span>is_pad_head(hs)
+</span></span><span style="display:flex;"><span>        <span style="color:#ff7b72">return</span> a_hat, is_pad_hat, [mu, logvar]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">build_encoder</span>(args):
+</span></span><span style="display:flex;"><span>    d_model <span style="color:#ff7b72;font-weight:bold">=</span> args<span style="color:#ff7b72;font-weight:bold">.</span>hidden_dim <span style="color:#8b949e;font-style:italic"># 256</span>
+</span></span><span style="display:flex;"><span>    dropout <span style="color:#ff7b72;font-weight:bold">=</span> args<span style="color:#ff7b72;font-weight:bold">.</span>dropout <span style="color:#8b949e;font-style:italic"># 0.1</span>
+</span></span><span style="display:flex;"><span>    nhead <span style="color:#ff7b72;font-weight:bold">=</span> args<span style="color:#ff7b72;font-weight:bold">.</span>nheads <span style="color:#8b949e;font-style:italic"># 8</span>
+</span></span><span style="display:flex;"><span>    dim_feedforward <span style="color:#ff7b72;font-weight:bold">=</span> args<span style="color:#ff7b72;font-weight:bold">.</span>dim_feedforward <span style="color:#8b949e;font-style:italic"># 2048</span>
+</span></span><span style="display:flex;"><span>    num_encoder_layers <span style="color:#ff7b72;font-weight:bold">=</span> args<span style="color:#ff7b72;font-weight:bold">.</span>enc_layers <span style="color:#8b949e;font-style:italic"># 4 # TODO shared with VAE decoder</span>
+</span></span><span style="display:flex;"><span>    normalize_before <span style="color:#ff7b72;font-weight:bold">=</span> args<span style="color:#ff7b72;font-weight:bold">.</span>pre_norm <span style="color:#8b949e;font-style:italic"># False</span>
+</span></span><span style="display:flex;"><span>    activation <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">&#34;relu&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    encoder_layer <span style="color:#ff7b72;font-weight:bold">=</span> TransformerEncoderLayer(d_model, nhead, dim_feedforward,
+</span></span><span style="display:flex;"><span>                                            dropout, activation, normalize_before)
+</span></span><span style="display:flex;"><span>    encoder_norm <span style="color:#ff7b72;font-weight:bold">=</span> nn<span style="color:#ff7b72;font-weight:bold">.</span>LayerNorm(d_model) <span style="color:#ff7b72">if</span> normalize_before <span style="color:#ff7b72">else</span> <span style="color:#79c0ff">None</span>
+</span></span><span style="display:flex;"><span>    encoder <span style="color:#ff7b72;font-weight:bold">=</span> TransformerEncoder(encoder_layer, num_encoder_layers, encoder_norm)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> encoder
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ff7b72">def</span> <span style="color:#d2a8ff;font-weight:bold">build</span>(args):
+</span></span><span style="display:flex;"><span>    state_dim <span style="color:#ff7b72;font-weight:bold">=</span> <span style="color:#a5d6ff">8</span> <span style="color:#8b949e;font-style:italic"># TODO hardcode</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># From state</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># backbone = None # from state for now, no need for conv nets</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#8b949e;font-style:italic"># From image</span>
+</span></span><span style="display:flex;"><span>    backbones <span style="color:#ff7b72;font-weight:bold">=</span> []
+</span></span><span style="display:flex;"><span>    backbone <span style="color:#ff7b72;font-weight:bold">=</span> build_backbone(args)
+</span></span><span style="display:flex;"><span>    backbones<span style="color:#ff7b72;font-weight:bold">.</span>append(backbone)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    transformer <span style="color:#ff7b72;font-weight:bold">=</span> build_transformer(args)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    encoder <span style="color:#ff7b72;font-weight:bold">=</span> build_encoder(args)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#ff7b72;font-weight:bold">=</span> DETRVAE(
+</span></span><span style="display:flex;"><span>        backbones,
+</span></span><span style="display:flex;"><span>        transformer,
+</span></span><span style="display:flex;"><span>        encoder,
+</span></span><span style="display:flex;"><span>        state_dim<span style="color:#ff7b72;font-weight:bold">=</span>state_dim,
+</span></span><span style="display:flex;"><span>        num_queries<span style="color:#ff7b72;font-weight:bold">=</span>args<span style="color:#ff7b72;font-weight:bold">.</span>num_queries,
+</span></span><span style="display:flex;"><span>        camera_names<span style="color:#ff7b72;font-weight:bold">=</span>args<span style="color:#ff7b72;font-weight:bold">.</span>camera_names,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    n_parameters <span style="color:#ff7b72;font-weight:bold">=</span> sum(p<span style="color:#ff7b72;font-weight:bold">.</span>numel() <span style="color:#ff7b72">for</span> p <span style="color:#ff7b72;font-weight:bold">in</span> model<span style="color:#ff7b72;font-weight:bold">.</span>parameters() <span style="color:#ff7b72">if</span> p<span style="color:#ff7b72;font-weight:bold">.</span>requires_grad)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#a5d6ff">&#34;number of parameters: </span><span style="color:#a5d6ff">%.2f</span><span style="color:#a5d6ff">M&#34;</span> <span style="color:#ff7b72;font-weight:bold">%</span> (n_parameters<span style="color:#ff7b72;font-weight:bold">/</span><span style="color:#a5d6ff">1e6</span>,))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ff7b72">return</span> model
+</span></span></code></pre></div><h1 id="results">
+  Results
+  <a class="heading-link" href="#results">
+    <i class="fa-solid fa-link" aria-hidden="true" title="Link to heading"></i>
+    <span class="sr-only">Link to heading</span>
+  </a>
+</h1>
+
+  </article>
+</section>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css"
+    integrity="sha384-vKruj+a13U8yHIkAyGgK1J3ArTLzrFGBbBc0tDp4ad/EyewESeXE/Iv67Aj8gKZ0" crossorigin="anonymous">
+  
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"
+    integrity="sha384-PwRUT/YqbnEjkZO0zZxNqcxACrXe+j766U2amXcgMg5457rve2Y7I6ZJSm2A0mS4" crossorigin="anonymous"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+    integrity="sha384-+VBxd3r6XgURycqtZ117nYw44OOcIax56Z4dCRWbxyPt0Koah1uHoK0o4+/RRE05" crossorigin="anonymous"
+    onload="renderMathInElement(document.body,
+      {
+        delimiters: [
+          {left: '$$', right: '$$', display:true},
+          {left: '$', right: '$', display:false},
+          {left: '\\(', right: '\\)', display: false},
+          {left: '\\[', right: '\\]', display: true}
+        ]
+      }
+    );"></script>
+
+    </div>
+
+    <footer class="footer">
+  <section class="container">
+    ©
+    
+      2019 -
+    
+    2025
+     Sai Navaneet 
+    ·
+    
+    Powered by <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> & <a href="https://github.com/luizdepra/hugo-coder/" target="_blank" rel="noopener">Coder</a>.
+    
+  </section>
+</footer>
+
+  </main>
+
+  
+
+  
+  
+  <script src="/js/coder.js"></script>
+  
+
+  
+
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+</body>
+</html>
