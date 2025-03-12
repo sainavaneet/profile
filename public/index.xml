@@ -6,7 +6,22 @@
     <description>Recent content on Profile</description>
     <generator>Hugo</generator>
     <language>en</language>
+    <lastBuildDate>Wed, 12 Mar 2025 09:40:27 +0900</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My First Project</title>
+      <link>http://localhost:1313/blog/my-first-project/</link>
+      <pubDate>Wed, 12 Mar 2025 09:40:27 +0900</pubDate>
+      <guid>http://localhost:1313/blog/my-first-project/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>My First Project</title>
+      <link>http://localhost:1313/about/my-first-project/</link>
+      <pubDate>Wed, 12 Mar 2025 09:39:42 +0900</pubDate>
+      <guid>http://localhost:1313/about/my-first-project/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Vision Guided Imitation Learning using Action Chunk Transformer</title>
       <link>http://localhost:1313/projects/actfranka/</link>

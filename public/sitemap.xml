@@ -5,10 +5,16 @@
     <loc>http://localhost:1313/blog/</loc>
     <lastmod>2025-03-12T09:40:27+09:00</lastmod>
   </url><url>
+    <loc>http://localhost:1313/blog/my-first-project/</loc>
+    <lastmod>2025-03-12T09:40:27+09:00</lastmod>
+  </url><url>
     <loc>http://localhost:1313/</loc>
     <lastmod>2025-03-12T09:40:27+09:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/about/</loc>
+    <lastmod>2025-03-12T09:39:42+09:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/about/my-first-project/</loc>
     <lastmod>2025-03-12T09:39:42+09:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/authors/</loc>
