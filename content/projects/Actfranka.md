@@ -13,7 +13,7 @@ The Action Chunking with Transformers (ACT) technique in single-arm robotic mani
 
 This is from the main paper `"Attention is all you need "` .It’s designed to encode a sequence into a set of context-aware vector representations, relying heavily on self-attention and position-wise operations, without using recurrence (like RNNs) or convolution.
 
-![Description of image](https://1drv.ms/i/s!AjXaFRA-wQA5j5FeNP4NqWclWA_RzA?e=lzKWdQ)
+<iframe src="https://1drv.ms/i/s!AjXaFRA_wQA5j5FenP4NqwIcWA_RzA?e=lzKWdq" width="600" height="400"></iframe>
 
 thanks
 
