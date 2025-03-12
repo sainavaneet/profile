@@ -2,31 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/blog/</loc>
+    <loc>https://sainavaneet.github.io/blog/</loc>
     <lastmod>2025-03-12T09:40:27+09:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/blog/my-first-project/</loc>
+    <loc>https://sainavaneet.github.io/</loc>
     <lastmod>2025-03-12T09:40:27+09:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
-    <lastmod>2025-03-12T09:40:27+09:00</lastmod>
-  </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>https://sainavaneet.github.io/about/</loc>
     <lastmod>2025-03-12T09:39:42+09:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/my-first-project/</loc>
-    <lastmod>2025-03-12T09:39:42+09:00</lastmod>
+    <loc>https://sainavaneet.github.io/authors/</loc>
   </url><url>
-    <loc>http://localhost:1313/authors/</loc>
+    <loc>https://sainavaneet.github.io/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>https://sainavaneet.github.io/projects/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>https://sainavaneet.github.io/series/</loc>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>https://sainavaneet.github.io/tags/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
-  </url><url>
-    <loc>http://localhost:1313/projects/actfranka/</loc>
+    <loc>https://sainavaneet.github.io/projects/actfranka/</loc>
   </url>
 </urlset>

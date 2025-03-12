@@ -2,31 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Profile</title>
-    <link>http://localhost:1313/</link>
+    <link>https://sainavaneet.github.io/</link>
     <description>Recent content on Profile</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Wed, 12 Mar 2025 09:40:27 +0900</lastBuildDate>
-    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>My First Project</title>
-      <link>http://localhost:1313/blog/my-first-project/</link>
-      <pubDate>Wed, 12 Mar 2025 09:40:27 +0900</pubDate>
-      <guid>http://localhost:1313/blog/my-first-project/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>My First Project</title>
-      <link>http://localhost:1313/about/my-first-project/</link>
-      <pubDate>Wed, 12 Mar 2025 09:39:42 +0900</pubDate>
-      <guid>http://localhost:1313/about/my-first-project/</guid>
-      <description></description>
-    </item>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://sainavaneet.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Vision Guided Imitation Learning using Action Chunk Transformer</title>
-      <link>http://localhost:1313/projects/actfranka/</link>
+      <link>https://sainavaneet.github.io/projects/actfranka/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/projects/actfranka/</guid>
+      <guid>https://sainavaneet.github.io/projects/actfranka/</guid>
       <description>&lt;h1 id=&#34;introduction&#34;&gt;&#xA;  Introduction&#xA;  &lt;a class=&#34;heading-link&#34; href=&#34;#introduction&#34;&gt;&#xA;    &lt;i class=&#34;fa-solid fa-link&#34; aria-hidden=&#34;true&#34; title=&#34;Link to heading&#34;&gt;&lt;/i&gt;&#xA;    &lt;span class=&#34;sr-only&#34;&gt;Link to heading&lt;/span&gt;&#xA;  &lt;/a&gt;&#xA;&lt;/h1&gt;&#xA;&lt;p&gt;The Action Chunking with Transformers (ACT) technique in single-arm robotic manipulation for vision-guided pick-and-place tasks. ACT employs a Conditional Variational Autoencoder (CVAE) to predict sequences of actions, termed &amp;ldquo;action chunks,&amp;rdquo; which are groups of actions predicted together to achieve more complex tasks efficiently. Unlike traditional methods that rely solely on joint position data and predict individual actions, our approach integrates visual data to enrich the learning context and enhance execution precision. We acquired the expert data by providing manual demonstrations of the task, allowing the model to learn from real-time, complex action sequences. By predicting these action chunks instead of single actions, the ACT model adapts from dual-arm to single-arm configurations, enhancing control strategies and demonstrating significant improvements in the robot&amp;rsquo;s speed, precision, and reliability. This substantiates the paper&amp;rsquo;s title, &amp;ldquo;Vision-Guided Imitation Learning Using Action Chunk Transformers,&amp;rdquo; highlighting the critical role of vision in advancing robotic control systems.&lt;/p&gt;</description>
     </item>
   </channel>
