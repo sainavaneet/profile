@@ -24,13 +24,13 @@ The transformer architecture is divided into two parts.
 
 ## Encoder
 
-![D](/images/clipboard-2502854223.png)
+![D](https://sainavaneet.github.io/profile/images/clipboard-2502854223.png)
 
 First of all the encoder transforms the input tokens into continuous embeddings and adds positional encodings, resulting in a sequence of vectors that now carry both semantic and positional information.
 
 ## Multi-head Attention
 
-![D](/images/clipboard-962511043.png)
+![D](https://sainavaneet.github.io/profile/images/clipboard-962511043.png)
 
    
 
@@ -44,15 +44,15 @@ First of all the encoder transforms the input tokens into continuous embeddings 
    
 -   **Scaled Dot Product Attention**
 
-![D](/images/math.png)
+![D](https://sainavaneet.github.io/profile/images/math.png)
 
-![D](/images/clipboard-2936912793.png)
+![D](https://sainavaneet.github.io/profile/images/clipboard-2936912793.png)
 
 -   We concatenate the various segments we initially divided, restoring them to the original input embedding size. This concatenated output is then passed through a Linear layer, which produces the final output of the Attention mechanism.
 
 ## Decoder
 
-![](/images/clipboard-1278570773.png)
+![](https://sainavaneet.github.io/profile/images/clipboard-1278570773.png)
 
 The decoder receives the encoder's output and feeds it into the multi-headed attention mechanism.
 
@@ -60,13 +60,13 @@ The only change in the decoder is that within its multi-headed attention, the va
 
 # Main Overview of the ACT
 
-![](/images/clipboard-1202681815.png)
+![](https://sainavaneet.github.io/profile/images/clipboard-1202681815.png)
 
 The main architecture of the Action Chunk Transformer incorporates `two distinct encoders`. On the `left side`, one encoder is dedicated to processing action sequences along with position embeddings, which are then integrated into a style variable.
 
 ## STEP 1
 
-![](/images/clipboard-993422171.png)**Encoding Latent Variations:** The encoder on the left side compresses the action sequence and joint observations into a latent variable *z*. This variable captures the "`style`" of the action, focusing on unique motion patterns while ignoring specific details.
+![](https://sainavaneet.github.io/profile/images/clipboard-993422171.png)**Encoding Latent Variations:** The encoder on the left side compresses the action sequence and joint observations into a latent variable *z*. This variable captures the "`style`" of the action, focusing on unique motion patterns while ignoring specific details.
 
 **Facilitating Stochasticity:**
 
@@ -89,7 +89,7 @@ This structure allows the transformer to manage and learn from complex action se
 
 ## STEP 2
 
-![](/images/clipboard-2424426765.png){width="806"}
+![](https://sainavaneet.github.io/profile/images/clipboard-2424426765.png)
 
 ### System Overview
 
@@ -123,7 +123,7 @@ The system is designed to process visual input from cameras to predict the movem
 
 ## Temporial Ensembling
 
-![](/images/clipboard-3830263335.png)
+![](https://sainavaneet.github.io/profile/images/clipboard-3830263335.png)
 
 
 ### Action Chunking
@@ -136,7 +136,7 @@ In the enhanced method combining Action Chunking and Temporal Ensembling, the mo
 
 # Algorithm
 
-![](/images/clipboard-4249152901.png)
+![](https://sainavaneet.github.io/profile/images/clipboard-4249152901.png)
 
 # CODE
 
