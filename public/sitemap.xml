@@ -2,25 +2,25 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/blog/</loc>
+    <loc>http://www.example.com/blog/</loc>
     <lastmod>2025-03-12T09:40:27+09:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/</loc>
+    <loc>http://www.example.com/</loc>
     <lastmod>2025-03-12T09:40:27+09:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/about/</loc>
+    <loc>http://www.example.com/about/</loc>
     <lastmod>2025-03-12T09:39:42+09:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/authors/</loc>
+    <loc>http://www.example.com/authors/</loc>
   </url><url>
-    <loc>http://localhost:1313/categories/</loc>
+    <loc>http://www.example.com/categories/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/</loc>
+    <loc>http://www.example.com/projects/</loc>
   </url><url>
-    <loc>http://localhost:1313/series/</loc>
+    <loc>http://www.example.com/series/</loc>
   </url><url>
-    <loc>http://localhost:1313/tags/</loc>
+    <loc>http://www.example.com/tags/</loc>
   </url><url>
-    <loc>http://localhost:1313/projects/actfranka/</loc>
+    <loc>http://www.example.com/projects/actfranka/</loc>
   </url>
 </urlset>
